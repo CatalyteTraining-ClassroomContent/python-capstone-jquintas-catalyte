@@ -1,4 +1,3 @@
-# Functions
 def filter_by_date(submission_date, submissions_list):
     """
     Filters the submissions by specified date
@@ -126,7 +125,7 @@ def get_average_score(submissions_list):
     return round(average, 1)
 
 
-def get_average_score_by_module(submission_list):
+def get_average_score_by_module(submissions_list):
     """
 
     Parameters:
@@ -137,7 +136,89 @@ def get_average_score_by_module(submission_list):
         ValueError: (may delete if not used)
     """
 
-    return
+    dict_totals_by_module = {}
+    for quiz in submissions_list:
+        module_name = quiz["quiz_module"]
+        module_score = quiz["quiz_score"]
+
+        if module_name in dict_totals_by_module:
+            dict_totals_by_module[module_name]["total_score"] += module_score
+            dict_totals_by_module[module_name]["count"] += 1
+        else:
+            dict_totals_by_module[module_name] = {
+                "total_score": module_score,
+                "count": 1,
+            }
+
+    dict_average_by_module = {}
+    for module_name, value in dict_totals_by_module.items():
+        average = value["total_score"] / value["count"]
+        dict_average_by_module[module_name] = round(average, 1)
+    # dict_totals_by_module[module_name] = module_score / i
+    # for score in dict_totals_by_module:
+
+    #     dict_average_by_module = dict_totals_by_module["module_score"] / count
+
+    # return dict_totals_by_module
+    return dict_average_by_module
+
+    # Doesn't work
+    # dict_totals_by_module = {}
+    # count = 0
+    # dict_average_by_module = {}
+    # i = 0
+    # for quiz in submissions_list:
+    #     module_name = quiz["quiz_module"]
+    #     module_score = quiz["quiz_score"]
+    #     # i += 1
+    #     # print(quiz, ": ", i,"\n")
+    #     if module_name in dict_totals_by_module:
+    #         dict_totals_by_module[module_name] += module_score
+    #         # count += 1
+    #         # print(count)
+    #     else:
+    #         dict_totals_by_module[module_name] = module_score
+
+    #     dict_totals_by_module[module_name] = module_score / i
+    #     # for score in dict_totals_by_module:
+
+    #     #     dict_average_by_module = dict_totals_by_module["module_score"] / count
+
+    # return dict_totals_by_module
+
+    # list_of_quiz_modules = []
+    # for quiz in submissions_list:
+    #     list_of_quiz_modules.append(quiz["quiz_module"])
+    #     # print(list_of_quiz_modules)
+    # unique_list_quiz_modules = list(set(list_of_quiz_modules))
+
+    # # my_dict = dict
+    # # dict_modules = {}
+    # for i in range(len(unique_list_quiz_modules)):
+    #     if quiz["quiz_module"] == i:
+
+    # return unique_list_quiz_modules
+
+    # Get the unique values of the dictionary for the key quiz_module
+    # dict_of_module_scores = {}
+    # # values_of_submissions_list = submissions_list.values()
+    # # for quiz in submissions_list:0
+    # #     dict_of_module_scores[quiz] = None
+    # return dict_of_module_scores
+
+    # total = 0
+    # for quiz in submissions_list:
+    #     if submissions_list["quiz_module"] == submissions_list["quiz_module"]:
+
+    # dict_of_quiz_Scores_by_modules = {}
+
+    # if quiz in submissions_list:
+
+    # # for quiz in submissions_list:
+    # #     if submissions_list["quiz_module"]:
+    # #         dict_of_quiz_Scores_by_modules.update(submissions_list["quiz_module"])
+
+    # return dict_of_quiz_Scores_by_modules
 
 
 # # Data Model for a Submission:
@@ -350,3 +431,6 @@ student_roster = [
 
 # average_quiz_score = get_average_score(collection_of_submissions)
 # print(average_quiz_score)
+
+module_averages = get_average_score_by_module(collection_of_submissions)
+print(module_averages)
