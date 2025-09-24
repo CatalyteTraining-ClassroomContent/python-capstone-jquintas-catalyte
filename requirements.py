@@ -102,7 +102,7 @@ def find_unsubmitted(submission_date, student_names_list, submissions_list):
     return list_of_students_missing_all_assignments
 
 
-def get_average_score(submission_list):
+def get_average_score(submissions_list):
     """
     Calculates the average score from submissions
     Parameters:
@@ -112,7 +112,18 @@ def get_average_score(submission_list):
     Raises:
         ValueError: (may delete if not used)
     """
-    return
+    quiz_score_list = []
+    for score in submissions_list:
+        quiz_score_list.append(score["quiz_score"])
+
+    # total = 0
+    # # for score in quiz_score_list:
+    # #     total += score
+
+    # length = of
+    average = sum(quiz_score_list) / len(quiz_score_list)
+    # return average
+    return round(average, 1)
 
 
 def get_average_score_by_module(submission_list):
@@ -125,6 +136,7 @@ def get_average_score_by_module(submission_list):
     Raises:
         ValueError: (may delete if not used)
     """
+
     return
 
 
@@ -331,8 +343,10 @@ student_roster = [
 # list_of_students_by_student_iD = filter_by_student_id(582702, collection_of_submissions)
 # print(list_of_students_by_student_iD)
 
-# Work in Progress
-list_of_students_missing_all_assignments = find_unsubmitted(
-    "9/19/2025", student_roster, collection_of_submissions
-)
-print(list_of_students_missing_all_assignments)
+# list_of_students_missing_all_assignments = find_unsubmitted(
+#     "9/19/2025", student_roster, collection_of_submissions
+# )
+# print(list_of_students_missing_all_assignments)
+
+# average_quiz_score = get_average_score(collection_of_submissions)
+# print(average_quiz_score)
