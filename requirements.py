@@ -50,7 +50,6 @@ def filter_by_student_id(student_id, submissions_list):
     return list_of_students_for__student_id_specified
 
 
-# NOT WORKING
 def find_unsubmitted(submission_date, student_names_list, submissions_list):
     """
     Filters submissions to find missing entries
@@ -285,6 +284,15 @@ submission_16 = {
     "submission_date": "9/23/2025",
 }
 
+submission_17 = {
+    "quiz_name": "Quiz 1: Order of Operations",
+    "quiz_module": "Math",
+    "quiz_score": 72.3,
+    "student_id": 558062,
+    "student_name": "Bruce Wayne",
+    "submission_date": "9/19/2025",
+}
+
 collection_of_submissions = [
     submission_1,
     submission_2,
@@ -302,6 +310,7 @@ collection_of_submissions = [
     submission_14,
     submission_15,
     submission_16,
+    submission_17,
 ]
 
 
@@ -324,6 +333,6 @@ student_roster = [
 
 # Work in Progress
 list_of_students_missing_all_assignments = find_unsubmitted(
-    "9/23/2025", student_roster, collection_of_submissions
+    "9/19/2025", student_roster, collection_of_submissions
 )
 print(list_of_students_missing_all_assignments)
